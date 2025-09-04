@@ -1,42 +1,42 @@
 // Lista para agregar nomes
 let listaAmigos = [];
- 
-
-
-// Adicionando nomes na lista 
+ // Adicionando nomes na lista 
 function adicionarAmigo() {
-    let nome = document.querySelector('input').value;
-    if (nome == ''){
-        exibirTextoNaTela ('#Resultado', 'insira um nome válido');
-        return
-    }else{
-        listaAmigos.push(nome);
-        limparCampo();
-        exibirLista();
+    let nome = document.querySelector('input').value.trim();
+    if (nome === '') {
+        alert('Por favor, insira um nome válido.');
+        return;
     }
+    if (listaAmigos.includes(nome)) {
+        alert("Esse nome já foi adicionado!");
+        return;
     }
-    
+
+    listaAmigos.push(nome);
+    limparCampo();
+    exibirLista();
+    }
+//Limpar barra do campo nome 
         function limparCampo(){
             let campo = document.querySelector('input'); 
             campo.value = ''; 
         }
-        //Exibir nomes na tela
+
+//Exibir nomes na tela
 function exibirLista(){
     let lista =document.querySelector('#listaAmigos');
     lista.innerHTML = ''; 
-    for (i=0; i<listaAmigos.length; i++){
-        lista.innerHTML+=listaAmigos[i];
-
+    for ( let i=0; i<listaAmigos.length; i++){
+        lista.innerHTML+=  `<li> ${listaAmigos[i]} </li>`;
     }
 }
 // Sortear amigo 
 function sortearAmigo(){
-let resultadoSorteio = Math.floor(Math.random() *listaAmigos.length);
-let amigoSorteado =listaAmigos[resultadoSorteio]; 
-if (listaDeNomeSorteados.includes*amigoSorteado){
-    return sortearAmigo();
-}    else {
-    listaDeNomeSorteados.push(amigoSorteado)
-    document.getElementById('sortearAmigo').innerHTML= `amigo sorteado ${amigoSorteado}`; 
-}
+ if (listaAmigos.length < 2) {
+        alert("Adicione pelo menos 2 amigos para sortear!");
+        return; 
+ }
+let resultadoSorteio = Math.floor(Math.random() * listaAmigos.length);
+let amigoSorteado = listaAmigos[resultadoSorteio];
+document.getElementById('sortearAmigo').innerHTML = "Amigo sorteado: " + amigoSorteado; 
 }
